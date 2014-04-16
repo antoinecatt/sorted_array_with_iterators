@@ -129,15 +129,37 @@ class SortedArray
     # yield to each element
 
     # let's keep track of our index
+    i = 0
+    while i < @internal_arr.length
+      yield @internal_arr[i]
+      i += 1
+    end
+    @internal_arr
   end
 
   def each_with_index &block
+    i = 0
+    @internal_arr.each do |item|
+      yield @internal_arr = item, i
+      i += 1
+    end
+    
   end
 
-  def map &block
+    def map &block
+    arr = []
+    @internal_arr.each do |item|
+      arr << (yield item)
+      end
+      arr
   end
 
   def map! &block
+    arr = []
+    @internal_arr.each do |item|
+      @internal_arr[i] = (yield item)
+      i += 1
+      end
   end
 
   def find &block
